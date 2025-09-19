@@ -9,160 +9,204 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --accent:#b30059;
-      --deep:#800020;
-      --bg1:#ffe8ec;   /* warm pastel */
-      --bg2:#fff5f7;
-      --text:#222;
+    :root {
+      --accent: #b30059;
+      --deep: #800020;
+      --bg1: #ffe8ec;   /* warm pastel */
+      --bg2: #fff5f7;
+      --text: #222;
     }
 
-    html,body{
-      height:100%;
-      margin:0;
-      font-family:'Playfair Display',serif;
-      background:linear-gradient(135deg,var(--bg1),var(--bg2));
-      color:var(--text);
-      overflow-x:hidden;
-      transition:background 0.8s,color 0.8s;
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.8s, color 0.8s;
     }
 
-    header{
-      padding:1.75rem;
-      background:rgba(255,255,255,0.15);
-      backdrop-filter:blur(6px);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-      flex-wrap:wrap;
+    header {
+      padding: 1.75rem;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    header .title {text-align:left;}
-    header h1{
-      margin:0;
-      font-family:'Dancing Script',cursive;
-      color:var(--accent);
-      font-size:1.9rem;
-      transition:color .6s;
+    header .title { text-align: left; }
+    header h1 {
+      margin: 0;
+      font-family: 'Dancing Script', cursive;
+      color: var(--accent);
+      font-size: 1.9rem;
+      transition: color .6s;
     }
-    header p{
-      margin:0;
-      color:var(--text);
-      font-size:0.95rem;
-      transition:color .6s;
-    }
-
-    .sound-btn{
-      background:transparent;
-      border:2px solid rgba(0,0,0,0.2);
-      padding:.4rem .8rem;
-      border-radius:20px;
-      cursor:pointer;
-      font-size:1rem;
-      transition:background 0.3s;
+    header p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: color .6s;
     }
 
-    /* Intro screen */
+    .sound-btn {
+      background: transparent;
+      border: 2px solid rgba(0,0,0,0.2);
+      padding: .4rem .8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background .3s;
+    }
+
     #intro {
-      position:fixed;inset:0;
-      display:flex;align-items:center;justify-content:center;flex-direction:column;
-      z-index:9999;
-      background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-      transition:opacity .6s ease,visibility .6s ease;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      transition: opacity .6s ease, visibility .6s ease;
     }
-    #intro.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-    #intro h1{
-      font-family:'Dancing Script',cursive;
-      color:#fff;font-size:2.6rem;margin:0;
-      text-shadow:0 6px 30px rgba(0,0,0,0.2);
-      animation:pulse 1.6s infinite;
+    #intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
-    #intro p{color:#fff;opacity:.95;margin-top:.6rem;font-size:1.05rem;}
-    .open-btn{
-      margin-top:1.25rem;background:rgba(255,255,255,0.95);
-      border:none;color:var(--deep);
-      padding:.75rem 1.25rem;border-radius:12px;font-weight:700;
-      cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+    #intro h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #fff;
+      font-size: 2.6rem;
+      margin: 0;
+      text-shadow: 0 6px 30px rgba(0,0,0,0.2);
+      animation: pulse 1.6s infinite;
     }
-    .open-btn:hover{transform:translateY(-3px);}
-    @keyframes pulse {0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
+    #intro p {
+      color: #fff;
+      opacity: .95;
+      margin-top: .6rem;
+      font-size: 1.05rem;
+    }
+    .open-btn {
+      margin-top: 1.25rem;
+      background: rgba(255,255,255,0.95);
+      border: none;
+      color: var(--deep);
+      padding: .75rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .open-btn:hover {
+      transform: translateY(-3px);
+    }
+    @keyframes pulse { 0% { transform: scale(1) } 50% { transform: scale(1.07) } 100% { transform: scale(1) } }
 
-    /* Floating hearts */
-    .heart{position:fixed;bottom:-40px;width:22px;height:22px;background:rgba(255,0,100,0.6);clip-path:polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%);animation:float 9s linear infinite;z-index:0;}
-    .heart.h2{left:14%;animation-duration:10s;background:rgba(255,192,203,0.6);}
-    .heart.h3{left:48%;animation-duration:12s;background:rgba(255,105,180,0.6);}
-    .heart.h4{left:82%;animation-duration:14s;background:rgba(255,160,180,0.6);}
-    @keyframes float{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+    .heart { position: fixed; bottom: -40px; width: 22px; height: 22px; background: rgba(255,0,100,0.6); clip-path: polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%); animation: float 9s linear infinite; z-index: 0; }
+    .heart.h2 { left: 14%; animation-duration: 10s; background: rgba(255,192,203,0.6); }
+    .heart.h3 { left: 48%; animation-duration: 12s; background: rgba(255,105,180,0.6); }
+    .heart.h4 { left: 82%; animation-duration: 14s; background: rgba(255,160,180,0.6); }
+    @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity:1 } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0 } }
 
-    /* Click hearts */
-    .click-heart{
-      position:absolute;
-      width:26px;height:26px;
-      background:hotpink;
-      clip-path:polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%);
-      transform:scale(0);
-      animation:pop 1s forwards;
-      pointer-events:none;
+    .click-heart {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      background: hotpink;
+      clip-path: polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%);
+      transform: scale(0);
+      animation: pop 1s forwards;
+      pointer-events: none;
     }
-    @keyframes pop{
-      0%{transform:scale(0);opacity:1;}
-      50%{transform:scale(1.4);}
-      100%{transform:scale(0);opacity:0;}
-    }
-
-    main{max-width:920px;margin:1.25rem auto;padding:0 1rem;}
-    section{padding:1.6rem 0;opacity:0;transform:translateY(18px);animation:fadeIn .9s forwards;}
-    section:nth-of-type(odd){animation-delay:.25s}
-    h2{
-      font-family:'Dancing Script',cursive;
-      color:var(--accent);
-      font-size:1.6rem;
-      margin:.25rem 0 1rem;
-    }
-    @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
-
-    .reasons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
-    .reason-card{
-      background:#fff;padding:1rem;border-radius:12px;width:260px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.08);
-      cursor:pointer;
-      transition:transform .25s,box-shadow .25s;
-    }
-    .reason-card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
-    .reason-details{
-      max-height:0;
-      overflow:hidden;
-      color:#444;
-      margin-top:.5rem;
-      font-size:.95rem;
-      transition:max-height 0.4s ease, opacity 0.4s ease;
-      opacity:0;
-    }
-    .reason-card.open .reason-details{
-      max-height:200px;
-      opacity:1;
+    @keyframes pop {
+      0% { transform: scale(0); opacity:1; }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(0); opacity:0; }
     }
 
-    .chapter{background:rgba(255,255,255,0.9);padding:1rem;border-left:5px solid var(--accent);border-radius:8px;margin:.6rem 0;text-align:left}
-    .quiz-options button{display:block;margin:.4rem auto;padding:.55rem 1rem;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}
-    .quiz-message{margin-top:.4rem;font-weight:700}
-    .promises{list-style:none;padding:0}
-    .promises li{background:#fff;border-radius:10px;padding:.75rem;margin:.4rem 0;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-
-    /* Closing Note */
-    .closing-note{
-      text-align:center;
-      font-size:1.2rem;
-      font-style:italic;
-      margin:2rem 0;
-      color:var(--deep);
-      opacity:0;
-      transform:translateY(20px);
-      animation:fadeUp 1.5s forwards;
-      animation-delay:0.6s;
+    main { max-width: 920px; margin: 1.25rem auto; padding: 0 1rem; }
+    section { padding: 1.6rem 0; opacity: 0; transform: translateY(18px); animation: fadeIn .9s forwards; }
+    section:nth-of-type(odd) { animation-delay: .25s; }
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin: .25rem 0 1rem;
     }
-    @keyframes fadeUp{
-      to{opacity:1;transform:translateY(0);}
+    @keyframes fadeIn { to { opacity:1; transform: translateY(0) } }
+
+    .reasons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .reason-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 260px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .reason-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+    .reason-details {
+      max-height: 0;
+      overflow: hidden;
+      color: #444;
+      margin-top: .5rem;
+      font-size: .95rem;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .reason-card.open .reason-details {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .chapter {
+      background: rgba(255,255,255,0.9);
+      padding: 1rem;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      margin: .6rem 0;
+      text-align: left;
+    }
+    .quiz-options button {
+      display: block;
+      margin: .4rem auto;
+      padding: .55rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .quiz-message { margin-top: .4rem; font-weight: 700; }
+    .promises { list-style: none; padding: 0; }
+    .promises li {
+      background: #fff;
+      border-radius: 10px;
+      padding: .75rem;
+      margin: .4rem 0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .closing-note {
+      text-align: center;
+      font-size: 1.2rem;
+      font-style: italic;
+      margin: 2rem 0;
+      color: var(--deep);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.5s forwards;
+      animation-delay: 0.6s;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -245,62 +289,73 @@
       <h2>Our Playlist 🎶</h2>
       <p>Every song reminds me of us 💕</p>
       <audio id="bgMusic" preload="auto" loop>
-        <source src="song.mp3" type="audio/mp3">
+        <!-- Use the GitHub raw URL so it loads correctly -->
+        <source src="https://raw.githubusercontent.com/diosog/Cutie-/main/song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
       </audio>
     </section>
 
-    <!-- Closing Note -->
     <section class="closing-note">
       No matter where life takes us, my love for you will always remain endless. ❤️  
     </section>
   </main>
 
   <script>
-    const intro=document.getElementById('intro');
-    const openBtn=document.getElementById('openBtn');
-    const bgMusic=document.getElementById('bgMusic');
-    const soundToggle=document.getElementById('soundToggle');
+    const intro = document.getElementById('intro');
+    const openBtn = document.getElementById('openBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const soundToggle = document.getElementById('soundToggle');
 
-    bgMusic.volume=0.2;
+    bgMusic.volume = 0.2;
 
     function startMusic(){
-      bgMusic.play().catch(err=>console.log('Autoplay blocked:',err));
+      bgMusic.play().catch(err => console.log('Autoplay blocked:', err));
       intro.classList.add('hidden');
     }
-    openBtn.onclick=startMusic;
-    intro.onclick=e=>{if(e.target===intro)startMusic();};
+    openBtn.onclick = startMusic;
+    intro.onclick = e => { if(e.target === intro) startMusic(); };
 
-    soundToggle.onclick=()=>{
-      if(bgMusic.paused){bgMusic.play();soundToggle.textContent='🔊';}
-      else{bgMusic.pause();soundToggle.textContent='🔈';}
+    soundToggle.onclick = () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        soundToggle.textContent = '🔊';
+      } else {
+        bgMusic.pause();
+        soundToggle.textContent = '🔈';
+      }
     };
 
-    // Reason cards toggle (only one open at a time)
-    document.querySelectorAll('.reason-card').forEach(card=>{
-      card.addEventListener('click',()=>{
-        document.querySelectorAll('.reason-card').forEach(c=>{
-          if(c!==card) c.classList.remove('open');
+    document.querySelectorAll('.reason-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.reason-card').forEach(c => {
+          if (c !== card) c.classList.remove('open');
         });
         card.classList.toggle('open');
       });
     });
 
-    function checkAnswer(btn,correct){
-      const m=btn.parentElement.nextElementSibling;
-      if(correct){m.textContent="✔️ Correct! You know her so well!";m.style.color="#28a745";}
-      else{m.textContent="❌ Oops! Try again with love!";m.style.color="#d6336c";}
+    function checkAnswer(btn, correct) {
+      const m = btn.parentElement.nextElementSibling;
+      if (correct) {
+        m.textContent = "✔️ Correct! You know her so well!";
+        m.style.color = "#28a745";
+      } else {
+        m.textContent = "❌ Oops! Try again with love!";
+        m.style.color = "#d6336c";
+      }
     }
 
-    // Click hearts
-    document.addEventListener('click',e=>{
-      if(e.target.closest('#intro')||e.target.closest('button'))return;
-      const h=document.createElement('div');
-      h.className='click-heart';
-      h.style.left=e.pageX-13+'px';
-      h.style.top=e.pageY-13+'px';
+    document.addEventListener('click', e => {
+      if (e.target.closest('#intro') || e.target.closest('button')) return;
+      const h = document.createElement('div');
+      h.className = 'click-heart';
+      h.style.left = e.pageX - 13 + 'px';
+      h.style.top = e.pageY - 13 + 'px';
       document.body.appendChild(h);
-      setTimeout(()=>h.remove(),1000);
+      setTimeout(() => h.remove(), 1000);
     });
   </script>
 </body>
 </html>
+
+
